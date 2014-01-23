@@ -15,11 +15,11 @@ public class Teclado {
 		operacionesTecla(e);
 	}
 	public void operacionesTecla(KeyEvent e) {
-		boolean teclaExistente = teclas.containsKey(String.valueOf(e));
+		boolean teclaExistente = teclas.containsKey(e);
 		String teclaEnString = null;
 		
 		if(teclaExistente){
-			teclaEnString = teclas.get(String.valueOf(e));
+			teclaEnString = teclas.get(e);
 			calculadora.operacionesConTeclaString(teclaEnString);
 		}else{
 			//Llamar a método que diga que esta tecla no sirve (Ese método ha de estar dentro de la clase "Calculadora".)

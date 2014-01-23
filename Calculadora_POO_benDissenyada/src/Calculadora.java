@@ -12,6 +12,7 @@ public class Calculadora extends JPanel{
 	double resultado;
 	String operador;
 	boolean teclaNum1 = true;
+	boolean acabaDePonerOperador = true;
 	
 	
 	public Calculadora(){
@@ -36,34 +37,46 @@ public class Calculadora extends JPanel{
 	}
 	public void ponerTeclasEnMemoria(boolean teclaEsOperador, String teclaString){
 		if(teclaEsOperador){
-			comprovarIgual(teclaString);
-			operador = teclaString;
-			teclaNum1 = false;
+			if(acabaDePonerOperador){
+				mostrarMensaje(2);
+			}else{
+				operador = teclaString;
+				acabaDePonerOperador = true;
+				comprovarIgual(operador);
+			}
 		}else{
 			if(teclaNum1){
 				num1 += teclaString;
+				//Escribir por pantalla el num1.
 			}else{
 				num2 += teclaString;
+				//Escribir por pantalla el num2.
 			}
+			acabaDePonerOperador = false;
 		}
 	}
 	private void comprovarIgual(String operador) {
 		if(operador.equals("=")){
 			if(teclaNum1 == true){
+				acabaDePonerOperador = false;
 				mostrarMensaje(1);
 			}else{
-				//Llamar a los métodos para hacer las operaciones.
+				//Escribir por pantalla el símbolo "=".
+				//La instrucción de abajo no sé si está bién. Mirarmela bien y con detenimiento, más adelante.
+				teclaNum1 = false;
+				hacerOperaciones();
+				//Poner resultado operación.
 			}
 		}
 	}
 	public void operacionesConTeclaString(String teclaEnString) {
-		boolean teclaEsOperador;
+		boolean teclaEsOperador = false;
 		
 		teclaEsOperador = comprovarTeclaOperador(teclaEnString);
 		ponerTeclasEnMemoria(teclaEsOperador, teclaEnString);
 	}
 	public boolean comprovarTeclaOperador(String teclaEnString) {
-		if(teclaEnString != "+" && teclaEnString != "-" &&teclaEnString != "*" &&teclaEnString != "/"){
+		if(teclaEnString != "+" && teclaEnString != "-" && teclaEnString != "*" && teclaEnString != "/" && teclaEnString != "="){
 			return false;
 		}else{
 			return true;
@@ -72,10 +85,26 @@ public class Calculadora extends JPanel{
 	public void mostrarMensaje(int numMensaje){
 		switch (numMensaje){
 			case 1:
-				//Mostrar mensaje: "Falta el segundo operador...".
+				//Mostrar mensaje: "Falta el segundo número...".
 				break;
 			case 2:
-				
+				//Mostrar mensaje: "Ahora, no puedes poner un operador. Has de poner un número. Etc.".
+				break;
+		}
+	}
+	public void hacerOperaciones(){
+		switch(this.operador){
+			case "+":
+				resultado = Double.parseDouble(num1) + Double.parseDouble(num2);
+				break;
+			case "-":
+				resultado = Double.parseDouble(num1) - Double.parseDouble(num2);
+				break;
+			case "*":
+				resultado = Double.parseDouble(num1) * Double.parseDouble(num2);
+				break;
+			case "/":
+				resultado = Double.parseDouble(num1) / Double.parseDouble(num2);
 				break;
 		}
 	}
