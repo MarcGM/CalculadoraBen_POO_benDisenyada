@@ -36,6 +36,7 @@ public class Calculadora extends JPanel{
 	}
 	public void ponerTeclasEnMemoria(boolean teclaEsOperador, String teclaString){
 		if(teclaEsOperador){
+			comprovarIgual(teclaString);
 			operador = teclaString;
 			teclaNum1 = false;
 		}else{
@@ -43,6 +44,15 @@ public class Calculadora extends JPanel{
 				num1 += teclaString;
 			}else{
 				num2 += teclaString;
+			}
+		}
+	}
+	private void comprovarIgual(String operador) {
+		if(operador.equals("=")){
+			if(teclaNum1 == true){
+				mostrarMensaje(1);
+			}else{
+				//Llamar a los métodos para hacer las operaciones.
 			}
 		}
 	}
@@ -57,6 +67,16 @@ public class Calculadora extends JPanel{
 			return false;
 		}else{
 			return true;
+		}
+	}
+	public void mostrarMensaje(int numMensaje){
+		switch (numMensaje){
+			case 1:
+				//Mostrar mensaje: "Falta el segundo operador...".
+				break;
+			case 2:
+				
+				break;
 		}
 	}
 }
