@@ -1,3 +1,4 @@
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import java.awt.event.KeyEvent;
@@ -6,7 +7,7 @@ import java.awt.event.KeyListener;
 
 @SuppressWarnings("serial")
 public class Calculadora extends JPanel{
-	Teclado teclado = new Teclado(this);
+	Teclado teclado;// = new Teclado(this);
 	String num1;
 	String num2;
 	double resultado;
@@ -16,6 +17,7 @@ public class Calculadora extends JPanel{
 	
 	
 	public Calculadora(){
+		teclado = new Teclado(this);
 		addKeyListener(new KeyListener(){
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -32,8 +34,15 @@ public class Calculadora extends JPanel{
 		setFocusable(true);
 	}
 	
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) throws InterruptedException{
+		JFrame frame = new JFrame("");
+		Calculadora calculadora = new Calculadora();
+		frame.add(calculadora);
+		frame.setVisible(false);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		while (true) {
+			Thread.sleep(10);
+		}
 	}
 	public void ponerTeclasEnMemoria(boolean teclaEsOperador, String teclaString){
 		if(teclaEsOperador){
