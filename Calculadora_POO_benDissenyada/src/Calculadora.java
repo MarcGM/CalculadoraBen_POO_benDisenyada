@@ -1,4 +1,5 @@
 import javax.swing.JPanel;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -17,7 +18,7 @@ public class Calculadora extends JPanel{
 		addKeyListener(new KeyListener(){
 			@Override
 			public void keyPressed(KeyEvent e) {
-				
+				teclado.KeyPressed(e);;
 			}
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -25,7 +26,6 @@ public class Calculadora extends JPanel{
 			}
 			@Override
 			public void keyTyped(KeyEvent e) {
-				
 			}	
 		});
 		setFocusable(true);
@@ -44,6 +44,19 @@ public class Calculadora extends JPanel{
 			}else{
 				num2 += teclaString;
 			}
+		}
+	}
+	public void operacionesConTeclaString(String teclaEnString) {
+		boolean teclaEsOperador;
+		
+		teclaEsOperador = comprovarTeclaOperador(teclaEnString);
+		ponerTeclasEnMemoria(teclaEsOperador, teclaEnString);
+	}
+	public boolean comprovarTeclaOperador(String teclaEnString) {
+		if(teclaEnString != "+" && teclaEnString != "-" &&teclaEnString != "*" &&teclaEnString != "/"){
+			return false;
+		}else{
+			return true;
 		}
 	}
 }
