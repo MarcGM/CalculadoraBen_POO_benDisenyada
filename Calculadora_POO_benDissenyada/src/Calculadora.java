@@ -1,13 +1,12 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 
 @SuppressWarnings("serial")
 public class Calculadora extends JPanel{
-	Teclado teclado;// = new Teclado(this);
+	Teclado teclado = new Teclado(this);
 	String num1;
 	String num2;
 	double resultado;
@@ -17,28 +16,34 @@ public class Calculadora extends JPanel{
 	
 	
 	public Calculadora(){
-		teclado = new Teclado(this);
+		//System.out.println("3");
 		addKeyListener(new KeyListener(){
 			@Override
 			public void keyPressed(KeyEvent e) {
-				teclado.KeyPressed(e);;
+				//System.out.println("8");
+				//teclado.KeyPressed(e);
+				//System.out.println("9");
+				System.out.println(e.getKeyCode()+"==> "+e.getKeyChar());
 			}
 			@Override
 			public void keyReleased(KeyEvent e) {
-				
 			}
 			@Override
 			public void keyTyped(KeyEvent e) {
 			}	
 		});
+		//System.out.println("4");
 		setFocusable(true);
+		//System.out.println("5");
 	}
 	
 	public static void main(String[] args) throws InterruptedException{
+		//System.out.println("1");
 		JFrame frame = new JFrame("");
 		Calculadora calculadora = new Calculadora();
 		frame.add(calculadora);
-		frame.setVisible(false);
+		frame.setVisible(true);
+		//System.out.println("2");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		while (true) {
 			Thread.sleep(10);
