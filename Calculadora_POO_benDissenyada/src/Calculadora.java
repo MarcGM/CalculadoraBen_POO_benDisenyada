@@ -21,9 +21,9 @@ public class Calculadora extends JPanel{
 			@Override
 			public void keyPressed(KeyEvent e) {
 				//System.out.println("8");
-				//teclado.KeyPressed(e);
+				teclado.KeyPressed(e);
 				//System.out.println("9");
-				System.out.println(e.getKeyCode()+"==> "+e.getKeyChar());
+				//System.out.println(e.getKeyCode()+"==> "+e.getKeyChar());
 			}
 			@Override
 			public void keyReleased(KeyEvent e) {
