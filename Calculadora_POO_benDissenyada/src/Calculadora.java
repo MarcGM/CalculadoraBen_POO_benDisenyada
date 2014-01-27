@@ -7,8 +7,8 @@ import java.awt.event.KeyListener;
 @SuppressWarnings("serial")
 public class Calculadora extends JPanel{
 	Teclado teclado = new Teclado(this);
-	String num1;
-	String num2;
+	String num1 = "";
+	String num2 = "";
 	double resultado;
 	String operador;
 	boolean teclaNum1 = true;
@@ -57,6 +57,7 @@ public class Calculadora extends JPanel{
 				operador = teclaString;
 				acabaDePonerOperador = true;
 				comprovarIgual(operador);
+				System.out.println("RESULTADO:>>> "+resultado);
 			}
 		}else{
 			if(teclaNum1){
@@ -70,14 +71,24 @@ public class Calculadora extends JPanel{
 		}
 	}
 	private void comprovarIgual(String operador) {
-		if(operador.equals("=")){
+		if(operador.equals("10")){
 			if(teclaNum1 == true){
 				acabaDePonerOperador = false;
 				mostrarMensaje(1);
 			}else{
 				//Escribir por pantalla el símbolo "=".
 				//La instrucción de abajo no sé si está bién. Mirarmela bien y con detenimiento, más adelante.
-				teclaNum1 = false;
+				//teclaNum1 = false;
+				hacerOperaciones();
+				//Poner resultado operación.
+			}
+		}else{
+			if(teclaNum1 == true){
+				//Escribir por pantalla el símbolo de la operación correspondiente.
+				this.teclaNum1 = false;
+			}else{
+				//La instrucción de abajo no sé si está bién. Mirarmela bien y con detenimiento, más adelante.
+				//Escribir por pantalla el símbolo de la operación correspondiente.
 				hacerOperaciones();
 				//Poner resultado operación.
 			}
@@ -86,14 +97,15 @@ public class Calculadora extends JPanel{
 	public void operacionesConTeclaString(String teclaEnString) {
 		boolean teclaEsOperador = false;
 		
+		//Llama al método que comprueva si la tecla pulsada es un operador.
 		teclaEsOperador = comprovarTeclaOperador(teclaEnString);
 		ponerTeclasEnMemoria(teclaEsOperador, teclaEnString);
 	}
 	public boolean comprovarTeclaOperador(String teclaEnString) {
-		if(teclaEnString != "+" && teclaEnString != "-" && teclaEnString != "*" && teclaEnString != "/" && teclaEnString != "="){
-			return false;
-		}else{
+		if(teclaEnString.equals("+") || teclaEnString.equals("-") || teclaEnString.equals("*") || teclaEnString.equals("/") || teclaEnString.equals("10")){
 			return true;
+		}else{
+			return false;
 		}
 	}
 	public void mostrarMensaje(int numMensaje){

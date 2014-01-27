@@ -37,7 +37,6 @@ public class Teclado {
 		}else if(teclaEnter){
 			calculadora.operacionesConTeclaString(String.valueOf(e.getKeyCode()));
 		}else{
-			calculadora.operacionesConTeclaString(String.valueOf(e.getKeyChar()));
 			//Llamar a método que diga que esta tecla no sirve (Ese método ha de estar dentro de la clase "Calculadora".)
 			
 		}
