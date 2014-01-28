@@ -118,15 +118,15 @@ public class Calculadora extends JPanel{
 	public void mostrarMensaje(int numMensaje){
 		switch (numMensaje){
 			case 1:
-				//Mostrar mensaje: "Falta el segundo número...".
-				JOptionPane.showMessageDialog(this, "Falta poner el segundo número", "Adverténcia", JOptionPane.YES_NO_OPTION);
+				//Muestra el mensaje "¡Falta poner el segundo número!".
+				JOptionPane.showMessageDialog(this, "¡Falta poner el segundo número!", "Adverténcia", JOptionPane.YES_NO_OPTION);
 				break;
 			case 2:
-				//Mostrar mensaje: "Ahora, no puedes poner un operador. Has de poner un número. Etc.".
+				//Muestra el mensaje: "¡NO puedes poner un operador, has de poner un número!".
 				JOptionPane.showMessageDialog(this, "¡NO puedes poner un operador, has de poner un número!", "Adverténcia", JOptionPane.YES_NO_OPTION);
 				break;
 			case 3:
-				//Mostrar mensaje: "Esta tecla no está disponible".
+				//Muestra el mensaje: "¡Esta tecla no está disponible!".
 				JOptionPane.showMessageDialog(this, "¡Esta tecla no está disponible!", "Adverténcia", JOptionPane.YES_NO_OPTION);
 				break;
 		}
