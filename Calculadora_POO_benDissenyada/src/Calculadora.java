@@ -1,5 +1,6 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -11,19 +12,17 @@ public class Calculadora extends JPanel{
 	String num2 = "";
 	double resultado;
 	String operador;
+	String operadorViejo;
+	boolean dosNumsPuestos = false;
 	boolean teclaNum1 = true;
 	boolean acabaDePonerOperador = true;
 	
 	
 	public Calculadora(){
-		//System.out.println("3");
 		addKeyListener(new KeyListener(){
 			@Override
 			public void keyPressed(KeyEvent e) {
-				//System.out.println("8");
 				teclado.KeyPressed(e);
-				//System.out.println("9");
-				//System.out.println(e.getKeyCode()+"==> "+e.getKeyChar());
 			}
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -32,18 +31,14 @@ public class Calculadora extends JPanel{
 			public void keyTyped(KeyEvent e) {
 			}	
 		});
-		//System.out.println("4");
 		setFocusable(true);
-		//System.out.println("5");
 	}
 	
 	public static void main(String[] args) throws InterruptedException{
-		//System.out.println("1");
 		JFrame frame = new JFrame("");
 		Calculadora calculadora = new Calculadora();
 		frame.add(calculadora);
 		frame.setVisible(true);
-		//System.out.println("2");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		while (true) {
 			Thread.sleep(10);
@@ -54,18 +49,35 @@ public class Calculadora extends JPanel{
 			if(acabaDePonerOperador){
 				mostrarMensaje(2);
 			}else{
+				operadorViejo = operador;
 				operador = teclaString;
 				acabaDePonerOperador = true;
 				comprovarIgual(operador);
-				System.out.println("RESULTADO:>>> "+resultado);
+				if(dosNumsPuestos){
+					System.out.println(" = "+resultado);
+					if(!this.operador.equals("10")){
+						//Escribir por pantalla el operador.
+						System.out.print(operador+" ");
+					}else{
+						System.exit(ABORT);
+					}
+				}else{
+					if(!this.operador.equals("10")){
+						//Escribir por pantalla el operador.
+						System.out.print(" "+operador+" ");
+					}
+				}
 			}
 		}else{
 			if(teclaNum1){
 				num1 += teclaString;
 				//Escribir por pantalla el num1.
+				System.out.print(teclaString);
 			}else{
 				num2 += teclaString;
 				//Escribir por pantalla el num2.
+				System.out.print(teclaString);
+				dosNumsPuestos = true;
 			}
 			acabaDePonerOperador = false;
 		}
@@ -77,10 +89,9 @@ public class Calculadora extends JPanel{
 				mostrarMensaje(1);
 			}else{
 				//Escribir por pantalla el símbolo "=".
-				//La instrucción de abajo no sé si está bién. Mirarmela bien y con detenimiento, más adelante.
-				//teclaNum1 = false;
+				System.out.println();
+				System.out.println();
 				hacerOperaciones();
-				//Poner resultado operación.
 			}
 		}else{
 			if(teclaNum1 == true){
@@ -119,7 +130,7 @@ public class Calculadora extends JPanel{
 		}
 	}
 	public void hacerOperaciones(){
-		switch(this.operador){
+		switch(this.operadorViejo){
 			case "+":
 				resultado = Double.parseDouble(num1) + Double.parseDouble(num2);
 				break;
@@ -133,5 +144,7 @@ public class Calculadora extends JPanel{
 				resultado = Double.parseDouble(num1) / Double.parseDouble(num2);
 				break;
 		}
+		this.num1 = String.valueOf(resultado);
+		this.num2 = "";
 	}
 }
