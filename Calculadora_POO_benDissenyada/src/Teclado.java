@@ -8,9 +8,7 @@ public class Teclado {
 	
 	
 	public Teclado(Calculadora calculadora){
-		//System.out.println("6");
 		this.calculadora = calculadora;
-		//System.out.println("7");
 		ponerTeclasArray();
 	}
 
@@ -35,10 +33,10 @@ public class Teclado {
 		if(teclaExistente){
 			calculadora.operacionesConTeclaString(String.valueOf(e.getKeyChar()));
 		}else if(teclaEnter){
-			calculadora.operacionesConTeclaString(String.valueOf(e.getKeyCode()));
+			calculadora.operacionesConTeclaString("10");
 		}else{
 			//Llamar a método que diga que esta tecla no sirve (Ese método ha de estar dentro de la clase "Calculadora".)
-			
+			calculadora.mostrarMensaje(3);
 		}
 	}
 }

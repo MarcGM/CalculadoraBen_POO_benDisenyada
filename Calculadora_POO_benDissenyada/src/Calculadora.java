@@ -1,4 +1,5 @@
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import java.awt.event.KeyEvent;
@@ -56,14 +57,14 @@ public class Calculadora extends JPanel{
 				if(dosNumsPuestos){
 					System.out.println(" = "+resultado);
 					if(!this.operador.equals("10")){
-						//Escribir por pantalla el operador.
+						//Escribe por pantalla el operador.
 						System.out.print(operador+" ");
 					}else{
 						System.exit(ABORT);
 					}
 				}else{
 					if(!this.operador.equals("10")){
-						//Escribir por pantalla el operador.
+						//Escribe por pantalla el operador.
 						System.out.print(" "+operador+" ");
 					}
 				}
@@ -71,11 +72,11 @@ public class Calculadora extends JPanel{
 		}else{
 			if(teclaNum1){
 				num1 += teclaString;
-				//Escribir por pantalla el num1.
+				//Escribe por pantalla el num1.
 				System.out.print(teclaString);
 			}else{
 				num2 += teclaString;
-				//Escribir por pantalla el num2.
+				//Escribe por pantalla el num2.
 				System.out.print(teclaString);
 				dosNumsPuestos = true;
 			}
@@ -88,20 +89,15 @@ public class Calculadora extends JPanel{
 				acabaDePonerOperador = false;
 				mostrarMensaje(1);
 			}else{
-				//Escribir por pantalla el símbolo "=".
 				System.out.println();
 				System.out.println();
 				hacerOperaciones();
 			}
 		}else{
 			if(teclaNum1 == true){
-				//Escribir por pantalla el símbolo de la operación correspondiente.
 				this.teclaNum1 = false;
 			}else{
-				//La instrucción de abajo no sé si está bién. Mirarmela bien y con detenimiento, más adelante.
-				//Escribir por pantalla el símbolo de la operación correspondiente.
 				hacerOperaciones();
-				//Poner resultado operación.
 			}
 		}
 	}
@@ -123,9 +119,15 @@ public class Calculadora extends JPanel{
 		switch (numMensaje){
 			case 1:
 				//Mostrar mensaje: "Falta el segundo número...".
+				JOptionPane.showMessageDialog(this, "Falta poner el segundo número", "Adverténcia", JOptionPane.YES_NO_OPTION);
 				break;
 			case 2:
 				//Mostrar mensaje: "Ahora, no puedes poner un operador. Has de poner un número. Etc.".
+				JOptionPane.showMessageDialog(this, "¡NO puedes poner un operador, has de poner un número!", "Adverténcia", JOptionPane.YES_NO_OPTION);
+				break;
+			case 3:
+				//Mostrar mensaje: "Esta tecla no está disponible".
+				JOptionPane.showMessageDialog(this, "¡Esta tecla no está disponible!", "Adverténcia", JOptionPane.YES_NO_OPTION);
 				break;
 		}
 	}
